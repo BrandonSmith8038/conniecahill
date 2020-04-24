@@ -1,13 +1,108 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+		monospace;
+}
+:root {
+	--primary: #97622b;
+}
+.home-page-container {
+	display: flex;
+}
+
+.right-side {
+	margin: 0;
+	padding: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+		url('./img/Home-Page-Background.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: white;
+	height: 100vh;
+	width: 60%;
+}
+
+.left-side {
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+}
+
+.left-side {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 40%;
+}
+.video-thumbs {
+	color: white;
+	width: 50%;
+}
+
+h1.title {
+	font-size: 75px;
+	color: var(--primary);
+	font-family: 'Courgette', cursive;
+}
+p.video-title {
+	text-align: center;
+	margin-top: 0;
+	margin-bottom: 5px;
+	font-size: 39px;
+}
+h2.subtitle {
+	font-family: 'Courgette', cursive;
+	font-size: 50px;
+}
+.form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 65%;
+}
+.form::placeholder {
+	font-family: 'Courgette', cursive;
+}
+.form input,
+.form select {
+	padding: 10px;
+	width: 100%;
+	outline: none;
+	margin: 7px 0;
+	border-radius: 9px;
+	border: 1px solid var(--primary);
+	font-size: 30px;
+}
+.form select {
+	text-align: center;
+}
+.contact {
+	margin-top: auto;
+	margin-bottom: 20px;
+	color: var(--primary);
+	justify-self: flex-end;
+	text-align: center;
+	font-family: 'Courgette', cursive;
+}
+.contact p {
+	font-size: 30px;
+	margin: 0;
+}
+.fresh-submit {
+	background: #ffcc00;
+	padding: 10px;
+	text-align: center;
+	border-radius: 10px;
 }
