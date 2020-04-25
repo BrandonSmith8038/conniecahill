@@ -84,9 +84,13 @@ h2.subtitle {
 	border-radius: 9px;
 	border: 1px solid var(--primary);
 	font-size: 30px;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box; /* Firefox, other Gecko */
+	box-sizing: border-box; /* Opera/IE 8+ */
 }
 .form select {
 	text-align: center;
+	background: none;
 }
 .contact {
 	margin-top: auto;
@@ -105,4 +109,12 @@ h2.subtitle {
 	padding: 10px;
 	text-align: center;
 	border-radius: 10px;
+}
+.payment-methods {
+	margin: 0 auto;
+	max-width: 70%;
+}
+.payment-methods img {
+	margin-top: 10px;
+	width: 100%;
 }
