@@ -84,7 +84,7 @@ const PurchaseForm = () => {
 								Thank You! We have recieved your order, please check your email
 							</div>,
 						);
-						console.log({ data, details });
+						formik.resetForm();
 					}}
 				/>
 				<div className='payment-methods'>
