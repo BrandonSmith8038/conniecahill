@@ -2,8 +2,11 @@ import React, { useEffect } from 'react';
 import { PayPalButton } from 'react-paypal-button-v2';
 import paymentMethods from '../img/payment-methods.png';
 import { useFormik } from 'formik';
+import { useAlert } from 'react-alert';
 
 const PurchaseForm = () => {
+	const alert = useAlert();
+
 	const formik = useFormik({
 		initialValues: {
 			song: 'null',
@@ -75,6 +78,12 @@ const PurchaseForm = () => {
 						// }
 					}}
 					onSuccess={(details, data) => {
+						alert.show(
+							<div style={{ color: '#07df1c' }}>
+								{' '}
+								Thank You! We have recieved your order, please check your email
+							</div>,
+						);
 						console.log({ data, details });
 					}}
 				/>
