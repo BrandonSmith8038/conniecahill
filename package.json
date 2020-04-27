@@ -2,6 +2,7 @@
 	"name": "conniecahill",
 	"version": "0.1.0",
 	"private": true,
+	"proxy": "http://localhost:9000",
 	"dependencies": {
 		"@testing-library/jest-dom": "^4.2.4",
 		"@testing-library/react": "^9.3.2",
@@ -9,6 +10,7 @@
 		"axios": "^0.19.2",
 		"dotenv": "^8.2.0",
 		"formik": "^2.1.4",
+		"mongoose": "^5.9.10",
 		"netlify-lambda": "^1.6.3",
 		"react": "^16.13.1",
 		"react-alert": "^7.0.0",

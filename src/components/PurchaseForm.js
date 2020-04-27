@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import axios from 'axios';
 import { PayPalButton } from 'react-paypal-button-v2';
 import paymentMethods from '../img/payment-methods.png';
 import { useFormik } from 'formik';
@@ -6,7 +7,6 @@ import { useAlert } from 'react-alert';
 
 const PurchaseForm = () => {
 	const alert = useAlert();
-
 	const formik = useFormik({
 		initialValues: {
 			song: 'null',
@@ -14,6 +14,19 @@ const PurchaseForm = () => {
 			email: '',
 		},
 	});
+	const saveToDB = (payPalOrderID, name, email, song) => {
+		axios
+			.post('/CreateOrder', {
+				payPalOrderID,
+				name,
+				email,
+				song,
+			})
+			.then((res) => {
+				console.log(res);
+			})
+			.catch((e) => console.log(e));
+	};
 	return (
 		<div className='form'>
 			<form onSubmit={formik.handleSubmit}>
@@ -84,6 +97,15 @@ const PurchaseForm = () => {
 								Thank You! We have recieved your order, please check your email
 							</div>,
 						);
+						const { orderID } = data;
+						const { email_address: email } = details.payer;
+						const {
+							given_name: firstName,
+							surname: lastName,
+						} = details.payer.name;
+						const { description: song } = details.purchase_units[0];
+						const name = `${firstName} ${lastName}`;
+						saveToDB(orderID, name, email, song);
 						formik.resetForm();
 					}}
 				/>
