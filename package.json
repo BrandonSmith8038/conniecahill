@@ -10,6 +10,7 @@
 		"axios": "^0.19.2",
 		"dotenv": "^8.2.0",
 		"formik": "^2.1.4",
+		"http-proxy-middleware": "^1.0.3",
 		"mongoose": "^5.9.10",
 		"netlify-lambda": "^1.6.3",
 		"react": "^16.13.1",
