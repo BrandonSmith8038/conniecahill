@@ -76,12 +76,14 @@ const PurchaseForm = () => {
 						disableFunding: 'credit,card',
 					}}
 					createOrder={(data, actions) => {
+						// Determine price if both songs are selected in form or just one
 						const price = formik.values.song === 'Both' ? '2.99' : '1.49';
+						// Changed the description if both songs are selected
 						const description =
 							formik.values.song === 'Both'
 								? 'Both'
 								: `${formik.values.song} - MP3`;
-
+						// Create The Paypal Order
 						return actions.order.create({
 							purchase_units: [
 								{
@@ -98,14 +100,16 @@ const PurchaseForm = () => {
 						});
 						// }
 					}}
+					// On Order Success
 					onSuccess={(details, data) => {
+						// Show The Aler
 						alert.show(
 							<div style={{ color: '#07df1c' }}>
 								{' '}
 								Thank You! We have recieved your order, please check your email
 							</div>,
 						);
-						console.log({ details, data });
+						// Create order to Send To Database
 						const { orderID } = data;
 						const { email_address: email } = details.payer;
 						const {
@@ -115,7 +119,9 @@ const PurchaseForm = () => {
 						const { description: song } = details.purchase_units[0];
 						const { value: price } = details.purchase_units[0].amount;
 						const name = `${firstName} ${lastName}`;
+						// Save To DB
 						saveToDB(orderID, name, email, song, price);
+						// Reset The Form
 						formik.resetForm();
 					}}
 				/>
