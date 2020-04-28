@@ -7,8 +7,7 @@ import db from './db';
 import Order from './Orders-Model';
 
 exports.handler = async (event, context) => {
-	console.log('Creating Order');
-	console.log('Saving Order To.......');
+	console.log('Saving Order To DB.......');
 	context.callbackWaitsForEmptyEventLoop = false;
 
 	try {
