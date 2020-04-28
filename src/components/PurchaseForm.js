@@ -16,16 +16,16 @@ const PurchaseForm = () => {
 	});
 	const saveToDB = (payPalOrderID, name, email, song) => {
 		axios
-			.post('/CreateOrder', {
+			.post('/.netlify/functions/CreateOrder', {
 				payPalOrderID,
 				name,
 				email,
 				song,
 			})
 			.then((res) => {
-				console.log(res);
+				console.log('Order Saved To Database');
 			})
-			.catch((e) => console.log(e));
+			.catch((e) => console.error(e));
 	};
 	return (
 		<div className='form'>
