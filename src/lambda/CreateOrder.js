@@ -7,13 +7,12 @@ import db from './db';
 import Order from './Orders-Model';
 
 exports.handler = async (event, context) => {
-	console.log('Creating Order');
-	console.log('Saving Order To.......');
+	console.log('Saving Order To DB.......');
 	context.callbackWaitsForEmptyEventLoop = false;
 
 	try {
 		const data = JSON.parse(event.body);
-		const { payPalOrderID, name, email, song } = data;
+		const { payPalOrderID, name, email, song, price } = data;
 		const id = mongoose.Types.ObjectId();
 		const newOrder = {
 			_id: id,
@@ -21,6 +20,7 @@ exports.handler = async (event, context) => {
 			name,
 			email,
 			song,
+			price,
 		};
 		const response = {
 			msg: 'Order Saved Successfully',

@@ -14,13 +14,14 @@ const PurchaseForm = () => {
 			email: '',
 		},
 	});
-	const saveToDB = (payPalOrderID, name, email, song) => {
+	const saveToDB = (payPalOrderID, name, email, song, price) => {
 		axios
 			.post('/.netlify/functions/CreateOrder', {
 				payPalOrderID,
 				name,
 				email,
 				song,
+				price,
 			})
 			.then((res) => {
 				console.log('Order Saved To Database');
@@ -44,6 +45,7 @@ const PurchaseForm = () => {
 					<option value='To Be Found Faithful'>
 						To Be Found Faithful - $1.49
 					</option>
+					<option value='Both'>Both Songs - $2.99</option>
 				</select>
 				<input
 					required
@@ -74,13 +76,21 @@ const PurchaseForm = () => {
 						disableFunding: 'credit,card',
 					}}
 					createOrder={(data, actions) => {
+						// Determine price if both songs are selected in form or just one
+						const price = formik.values.song === 'Both' ? '2.99' : '1.49';
+						// Changed the description if both songs are selected
+						const description =
+							formik.values.song === 'Both'
+								? 'Both'
+								: `${formik.values.song} - MP3`;
+						// Create The Paypal Order
 						return actions.order.create({
 							purchase_units: [
 								{
-									description: `${formik.values.song} - MP3`,
+									description,
 									amount: {
 										currency_code: 'USD',
-										value: '1.49',
+										value: price,
 									},
 								},
 							],
@@ -90,13 +100,16 @@ const PurchaseForm = () => {
 						});
 						// }
 					}}
+					// On Order Success
 					onSuccess={(details, data) => {
+						// Show The Aler
 						alert.show(
 							<div style={{ color: '#07df1c' }}>
 								{' '}
 								Thank You! We have recieved your order, please check your email
 							</div>,
 						);
+						// Create order to Send To Database
 						const { orderID } = data;
 						const { email_address: email } = details.payer;
 						const {
@@ -104,8 +117,11 @@ const PurchaseForm = () => {
 							surname: lastName,
 						} = details.payer.name;
 						const { description: song } = details.purchase_units[0];
+						const { value: price } = details.purchase_units[0].amount;
 						const name = `${firstName} ${lastName}`;
-						saveToDB(orderID, name, email, song);
+						// Save To DB
+						saveToDB(orderID, name, email, song, price);
+						// Reset The Form
 						formik.resetForm();
 					}}
 				/>
