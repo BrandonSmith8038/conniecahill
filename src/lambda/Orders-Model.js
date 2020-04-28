@@ -19,6 +19,10 @@ const schema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
+	price: {
+		type: String,
+		requried: true,
+	},
 });
 
 const Order = mongoose.model('orders', schema);

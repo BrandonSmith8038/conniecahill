@@ -14,13 +14,14 @@ const PurchaseForm = () => {
 			email: '',
 		},
 	});
-	const saveToDB = (payPalOrderID, name, email, song) => {
+	const saveToDB = (payPalOrderID, name, email, song, price) => {
 		axios
 			.post('/.netlify/functions/CreateOrder', {
 				payPalOrderID,
 				name,
 				email,
 				song,
+				price,
 			})
 			.then((res) => {
 				console.log('Order Saved To Database');
@@ -100,6 +101,7 @@ const PurchaseForm = () => {
 								Thank You! We have recieved your order, please check your email
 							</div>,
 						);
+						console.log({ details, data });
 						const { orderID } = data;
 						const { email_address: email } = details.payer;
 						const {
@@ -107,8 +109,9 @@ const PurchaseForm = () => {
 							surname: lastName,
 						} = details.payer.name;
 						const { description: song } = details.purchase_units[0];
+						const { value: price } = details.purchase_units[0].amount;
 						const name = `${firstName} ${lastName}`;
-						saveToDB(orderID, name, email, song);
+						saveToDB(orderID, name, email, song, price);
 						formik.resetForm();
 					}}
 				/>

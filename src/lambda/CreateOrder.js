@@ -12,7 +12,7 @@ exports.handler = async (event, context) => {
 
 	try {
 		const data = JSON.parse(event.body);
-		const { payPalOrderID, name, email, song } = data;
+		const { payPalOrderID, name, email, song, price } = data;
 		const id = mongoose.Types.ObjectId();
 		const newOrder = {
 			_id: id,
@@ -20,6 +20,7 @@ exports.handler = async (event, context) => {
 			name,
 			email,
 			song,
+			price,
 		};
 		const response = {
 			msg: 'Order Saved Successfully',
