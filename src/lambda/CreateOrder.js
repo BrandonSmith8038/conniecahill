@@ -7,6 +7,7 @@ import db from './db';
 import Order from './Orders-Model';
 
 exports.handler = async (event, context) => {
+	console.log('Creating Order');
 	console.log('Saving Order To.......');
 	context.callbackWaitsForEmptyEventLoop = false;
 
@@ -36,7 +37,7 @@ exports.handler = async (event, context) => {
 		console.log('new-order.create', err); //Outputs to netlify function log
 		return {
 			statusCode: 500,
-			body: JSON.stringify({ msg: err.message }),
+			body: JSON.stringify({ msg: err }),
 		};
 	}
 };
