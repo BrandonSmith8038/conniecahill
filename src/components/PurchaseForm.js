@@ -45,7 +45,7 @@ const PurchaseForm = () => {
 					<option value='To Be Found Faithful'>
 						To Be Found Faithful - $1.49
 					</option>
-					<option value='both'>Both Songs - $2.99</option>
+					<option value='Both'>Both Songs - $2.99</option>
 				</select>
 				<input
 					required
@@ -76,12 +76,16 @@ const PurchaseForm = () => {
 						disableFunding: 'credit,card',
 					}}
 					createOrder={(data, actions) => {
-						const price = formik.values.song === 'both' ? '2.99' : '1.49';
+						const price = formik.values.song === 'Both' ? '2.99' : '1.49';
+						const description =
+							formik.values.song === 'Both'
+								? 'Both'
+								: `${formik.values.song} - MP3`;
 
 						return actions.order.create({
 							purchase_units: [
 								{
-									description: `${formik.values.song} - MP3`,
+									description,
 									amount: {
 										currency_code: 'USD',
 										value: price,
