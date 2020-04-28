@@ -7,7 +7,7 @@ const RightSide = () => {
 			<div className='overlay'></div>
 			<div className='video-thumbs'>
 				<YouTubePlayer
-					title='I Beleive In Miracles'
+					title='I Believe In Miracles'
 					id='o2UGvAT5Vrw'
 					height='315'
 					width='100%'
