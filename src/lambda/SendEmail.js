@@ -1,14 +1,16 @@
 const dotenv = require('dotenv').config();
 const nodemailer = require('nodemailer');
+const mailer = require('nodemailer-promise');
 
-exports.handler = async (event, context) => {
+exports.handler = (event, context, callback) => {
 	const data = JSON.parse(event.body);
 	const { name, email, song } = data;
 	const emailBody = `
   ${name},
   Thank you very much for your puchase! Here is your song to download
   `;
-	const transporter = nodemailer.createTransport({
+
+	const sendEmail = mailer.config({
 		service: 'gmail',
 		auth: {
 			user: process.env.SENDFROMEMAIL,
@@ -23,19 +25,18 @@ exports.handler = async (event, context) => {
 		subject: `Purchase Of ${song} From Connie Cahill`,
 		text: emailBody,
 	};
-	console.log({ options });
-	transporter.sendMail(options, (err, res) => {
-		if (err) {
+
+	sendEmail(options)
+		.then((res) => {
+			console.log(res);
+
+			callback(null, { statusCode: 200, body: JSON.stringify(res) });
+		})
+		.catch((err) => {
 			console.error(err);
-			return {
+			callback(null, {
 				statusCode: 500,
 				body: JSON.stringify({ msg: err }),
-			};
-		}
-		console.log(res);
-		return {
-			statusCode: 200,
-			body: JSON.stringify({ result, full }),
-		};
-	});
+			});
+		});
 };
