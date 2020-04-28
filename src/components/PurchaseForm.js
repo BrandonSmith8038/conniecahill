@@ -28,8 +28,33 @@ const PurchaseForm = () => {
 			})
 			.catch((e) => console.error(e));
 	};
+
+	const sendEmail = (name, email, song) => {
+		axios
+			.post('/.netlify/functions/SendEmail', {
+				name,
+				email,
+				song,
+			})
+			.then((res) => {
+				console.log('Email Sent To Customer: ', res);
+			})
+			.catch((e) => console.error(e));
+	};
 	return (
 		<div className='form'>
+			<button
+				onClick={() => {
+					console.log('test');
+					sendEmail(
+						formik.values.name,
+						formik.values.email,
+						formik.values.song,
+					);
+				}}
+			>
+				Test Email
+			</button>
 			<form onSubmit={formik.handleSubmit}>
 				<select
 					required
