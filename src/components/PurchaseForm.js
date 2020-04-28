@@ -45,7 +45,6 @@ const PurchaseForm = () => {
 		<div className='form'>
 			<button
 				onClick={() => {
-					console.log('test');
 					sendEmail(
 						formik.values.name,
 						formik.values.email,

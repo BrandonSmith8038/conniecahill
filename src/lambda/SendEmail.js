@@ -1,5 +1,4 @@
 const dotenv = require('dotenv').config();
-const nodemailer = require('nodemailer');
 const mailer = require('nodemailer-promise');
 
 exports.handler = (event, context, callback) => {
@@ -17,6 +16,40 @@ exports.handler = (event, context, callback) => {
 			pass: process.env.GMAIL_APP_PASSWORD,
 		},
 	});
+	let attachments = [];
+	if (song === 'I Believe In Miracles') {
+		attachments = [
+			{
+				filename: `${song}.mp3`,
+				path:
+					'https://conniecahill.s3-us-west-1.amazonaws.com/Songs/I+Believe+In+Miracles.mp3',
+			},
+		];
+	}
+	if (song === 'To Be Found Faithful') {
+		attachments = [
+			{
+				filename: `${song}.mp3`,
+				path:
+					'https://conniecahill.s3-us-west-1.amazonaws.com/Songs/To+Be+Found+Faithful.mp3', //TODO Will Need To Change This URL WHEN CORRECT FILE IS UPLOADED
+			},
+		];
+	}
+
+	if (song === 'Both') {
+		attachments = [
+			{
+				filename: `I Believe In Miracles.mp3`,
+				path:
+					'https://conniecahill.s3-us-west-1.amazonaws.com/Songs/I+Believe+In+Miracles.mp3',
+			},
+			{
+				filename: `To Be Found Faithful.mp3`,
+				path:
+					'https://conniecahill.s3-us-west-1.amazonaws.com/Songs/To+Be+Found+Faithful.mp3', //TODO Will Need To Change This URL WHEN CORRECT FILE IS UPLOADED
+			},
+		];
+	}
 	const options = {
 		user: process.env.SENDFROMEMAIL,
 		pass: process.env.aulcwufziyrlcoct,
@@ -24,8 +57,8 @@ exports.handler = (event, context, callback) => {
 		from: process.env.SENDFROMEMAIL,
 		subject: `Purchase Of ${song} From Connie Cahill`,
 		text: emailBody,
+		attachments,
 	};
-
 	sendEmail(options)
 		.then((res) => {
 			console.log(res);
