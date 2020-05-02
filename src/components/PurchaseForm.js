@@ -43,17 +43,6 @@ const PurchaseForm = () => {
 	};
 	return (
 		<div className='form'>
-			<button
-				onClick={() => {
-					sendEmail(
-						formik.values.name,
-						formik.values.email,
-						formik.values.song,
-					);
-				}}
-			>
-				Test Email
-			</button>
 			<form onSubmit={formik.handleSubmit}>
 				<select
 					required
