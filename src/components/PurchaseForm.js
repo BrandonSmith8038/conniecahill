@@ -126,6 +126,7 @@ const PurchaseForm = () => {
 					}}
 					// On Order Success
 					onSuccess={(details, data) => {
+						console.log({ details, data });
 						// Show The Aler
 						alert.show(
 							<div style={{ color: '#07df1c' }}>
@@ -146,6 +147,7 @@ const PurchaseForm = () => {
 						// Save To DB
 						saveToDB(orderID, name, email, song, price);
 						// Reset The Form
+						sendEmail(name, email, song);
 						formik.resetForm();
 					}}
 				/>

@@ -5,13 +5,13 @@ const setAttachments = (song) => {
 	const faithfulURL = process.env.FAITHFUL_URL;
 	let attachments = '';
 	switch (song) {
-		case 'I Believe In Miracles':
+		case 'I Believe In Miracles - MP3':
 			attachments = {
 				filename: `${song}.mp3`,
 				path: believeURL,
 			};
 			break;
-		case 'To Be Found Faithful':
+		case 'To Be Found Faithful - MP3':
 			attachments = {
 				filename: `${song}.mp3`,
 				path: faithfulURL, //TODO Will Need To Change This URL WHEN CORRECT FILE IS UPLOADED

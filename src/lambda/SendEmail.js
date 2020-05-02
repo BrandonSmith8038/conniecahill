@@ -11,7 +11,9 @@ exports.handler = (event, context, callback) => {
   ${name},
   Thank you very much for your puchase! Here is your song to download
 	`;
-	console.log({ song, attachments, subject });
+	console.log({ data: data });
+	console.log({ name, email, song });
+	// console.log({ song, attachments, subject });
 
 	const sendEmail = mailer.config({
 		service: 'gmail',
@@ -24,7 +26,7 @@ exports.handler = (event, context, callback) => {
 	const options = {
 		user: process.env.SENDFROMEMAIL,
 		pass: process.env.aulcwufziyrlcoct,
-		to: 'brandon@reddirtwebdesign.com',
+		to: email,
 		from: process.env.SENDFROMEMAIL,
 		text: emailBody,
 		subject,
