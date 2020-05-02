@@ -25,7 +25,7 @@ exports.handler = (event, context, callback) => {
 
 	const options = {
 		user: process.env.SENDFROMEMAIL,
-		pass: process.env.aulcwufziyrlcoct,
+		pass: process.env.GMAIL_APP_PASSWORD,
 		to: email,
 		from: `Connie Cahill <${process.env.SENDFROMEMAIL}>`,
 		text: emailBody,
