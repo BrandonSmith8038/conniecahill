@@ -27,7 +27,7 @@ exports.handler = (event, context, callback) => {
 		user: process.env.SENDFROMEMAIL,
 		pass: process.env.aulcwufziyrlcoct,
 		to: email,
-		from: process.env.SENDFROMEMAIL,
+		from: `Connie Cahill <${process.env.SENDFROMEMAIL}>`,
 		text: emailBody,
 		subject,
 		attachments,
