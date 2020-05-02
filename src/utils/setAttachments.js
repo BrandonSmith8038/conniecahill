@@ -1,4 +1,4 @@
-const dotenv = require('dotenv').config();
+require('dotenv').config();
 
 const setAttachments = (song) => {
 	const believeURL = process.env.BELIEVE_URL;
