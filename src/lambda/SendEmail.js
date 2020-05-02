@@ -1,6 +1,6 @@
 const { setAttachments, setSubject } = require('../utils');
-const dotenv = require('dotenv').config();
 const mailer = require('nodemailer-promise');
+require('dotenv').config();
 
 exports.handler = (event, context, callback) => {
 	const data = JSON.parse(event.body);
