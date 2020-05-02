@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import YouTube from 'react-youtube';
 
@@ -16,6 +17,13 @@ const YouTubePlayer = (props) => {
 			</div>
 		</>
 	);
+};
+
+YouTubePlayer.propTypes = {
+	height: PropTypes.string.isRequired,
+	id: PropTypes.string.isRequired,
+	title: PropTypes.string.isRequired,
+	width: PropTypes.string.isRequired,
 };
 
 export default YouTubePlayer;
