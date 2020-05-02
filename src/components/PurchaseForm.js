@@ -28,8 +28,32 @@ const PurchaseForm = () => {
 			})
 			.catch((e) => console.error(e));
 	};
+
+	const sendEmail = (name, email, song) => {
+		axios
+			.post('/.netlify/functions/SendEmail', {
+				name,
+				email,
+				song,
+			})
+			.then((res) => {
+				console.log('Email Sent To Customer: ', res);
+			})
+			.catch((e) => console.error(e));
+	};
 	return (
 		<div className='form'>
+			<button
+				onClick={() => {
+					sendEmail(
+						formik.values.name,
+						formik.values.email,
+						formik.values.song,
+					);
+				}}
+			>
+				Test Email
+			</button>
 			<form onSubmit={formik.handleSubmit}>
 				<select
 					required
@@ -102,6 +126,7 @@ const PurchaseForm = () => {
 					}}
 					// On Order Success
 					onSuccess={(details, data) => {
+						console.log({ details, data });
 						// Show The Aler
 						alert.show(
 							<div style={{ color: '#07df1c' }}>
@@ -122,6 +147,7 @@ const PurchaseForm = () => {
 						// Save To DB
 						saveToDB(orderID, name, email, song, price);
 						// Reset The Form
+						sendEmail(name, email, song);
 						formik.resetForm();
 					}}
 				/>
