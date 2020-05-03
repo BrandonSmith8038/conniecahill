@@ -44,8 +44,8 @@ const Admin = () => {
 
 	const columns = React.useMemo(
 		() => [
-			{ Header: 'Name', accessor: 'Name' },
-			{ Header: 'Song', accessor: 'Song' },
+			{ Header: 'Name', accessor: 'Name', sortType: 'basic' },
+			{ Header: 'Song', accessor: 'Song', sortType: 'basic' },
 			{ Header: 'Email', accessor: 'Email' },
 		],
 		[],
@@ -57,10 +57,13 @@ const Admin = () => {
 		headerGroups,
 		rows,
 		prepareRow,
-	} = useTable({
-		columns,
-		data,
-	});
+	} = useTable(
+		{
+			columns,
+			data,
+		},
+		useSortBy,
+	);
 	return (
 		<Container>
 			<Link to='/'>
@@ -73,8 +76,13 @@ const Admin = () => {
 						{headerGroups.map((headerGroup) => (
 							<tr {...headerGroup.getHeaderGroupProps()}>
 								{headerGroup.headers.map((column) => (
-									<th {...column.getHeaderProps()}>
+									<th {...column.getHeaderProps(column.getSortByToggleProps())}>
 										{column.render('Header')}
+										{column.isSorted
+											? column.isSortedDesc
+												? ' ⬆'
+												: ' ⬇'
+											: ' '}
 									</th>
 								))}
 							</tr>
@@ -112,22 +120,37 @@ const Container = styled.div`
 
 const TableContainer = styled.div`
 	padding: 1rem;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	width: 80%;
 	table {
+		color: #333;
+		font-size: 18px;
+		width: 80%;
 		border-spacing: 0;
-		border: 1px solid black;
+		border: 1px solid rgba(0, 0, 0, 0.3);
 		tr {
 			:last-child {
 				td {
 					border-bottom: 0;
 				}
 			}
+			:nth-child(even) {
+				background-color: #b9fdf8;
+			}
+		}
+		th {
+			font-family: 'Courgette', cursive;
+			font-size: 25px;
+			letter-spacing: 3px;
 		}
 		th,
 		td {
 			margin: 0;
-			padding: 0.5rem;
-			border-bottom: 1px solid black;
-			border-right: 1px solid black;
+			padding: 1.5rem;
+			border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+			border-right: 1px solid rgba(0, 0, 0, 0.3);
 			:last-child {
 				border-right: 0;
 			}
