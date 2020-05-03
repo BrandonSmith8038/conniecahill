@@ -3,6 +3,8 @@ import paymentMethods from '../img/payment-methods.png';
 import { useFormik } from 'formik';
 import { CustomPayPalButton } from './';
 
+import { Link } from 'react-router-dom';
+
 const PurchaseForm = () => {
 	const formik = useFormik({
 		initialValues: {
@@ -14,6 +16,7 @@ const PurchaseForm = () => {
 
 	return (
 		<div className='form'>
+			<Link to='/admin'>Admin</Link>
 			<form onSubmit={formik.handleSubmit}>
 				<select
 					required
