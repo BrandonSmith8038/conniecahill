@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 const Contact = (props) => {
@@ -8,6 +9,10 @@ const Contact = (props) => {
 			<p>Contact: {email}</p>
 		</div>
 	);
+};
+
+Contact.propTypes = {
+	email: PropTypes.string.isRequired,
 };
 
 export default Contact;

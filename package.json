@@ -11,6 +11,7 @@
 		"formik": "^2.1.4",
 		"gmail-send": "^1.8.10",
 		"http-proxy-middleware": "^1.0.3",
+		"mongodb-client-encryption": "^1.0.1",
 		"mongoose": "^5.9.10",
 		"netlify-lambda": "^1.6.3",
 		"nodemailer-promise": "^2.0.0",

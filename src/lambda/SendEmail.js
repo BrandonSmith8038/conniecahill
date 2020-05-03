@@ -1,6 +1,6 @@
 const { setAttachments, setSubject } = require('../utils');
-const dotenv = require('dotenv').config();
 const mailer = require('nodemailer-promise');
+require('dotenv').config();
 
 exports.handler = (event, context, callback) => {
 	const data = JSON.parse(event.body);
@@ -11,9 +11,6 @@ exports.handler = (event, context, callback) => {
   ${name},
   Thank you very much for your puchase! Here is your song to download
 	`;
-	console.log({ data: data });
-	console.log({ name, email, song });
-	// console.log({ song, attachments, subject });
 
 	const sendEmail = mailer.config({
 		service: 'gmail',
