@@ -1,14 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import {
-	useTable,
-	useGroupBy,
-	useFilters,
-	useSortBy,
-	useExpanded,
-	usePagination,
-} from 'react-table';
+import { useTable, useSortBy } from 'react-table';
 
 const Admin = () => {
 	const data = React.useMemo(
@@ -69,7 +62,7 @@ const Admin = () => {
 			<Link to='/'>
 				<button>Home</button>
 			</Link>
-			<h1>Sales</h1>
+			<PageTitle>Sales</PageTitle>
 			<TableContainer>
 				<table {...getTableProps()}>
 					<thead>
@@ -156,4 +149,12 @@ const TableContainer = styled.div`
 			}
 		}
 	}
+`;
+
+const PageTitle = styled.h1`
+	font-size: 3.5rem;
+	font-family: 'Courgette', cursive;
+	text-transform: uppercase;
+	margin-bottom: 10px;
+	letter-spacing: 5px;
 `;
