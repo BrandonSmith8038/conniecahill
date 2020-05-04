@@ -26,6 +26,7 @@ const Admin = () => {
 			{ Header: 'Name', accessor: 'name', sortType: 'basic' },
 			{ Header: 'Song', accessor: 'song', sortType: 'basic' },
 			{ Header: 'Email', accessor: 'email' },
+			{ Header: 'PayPal Order ID', accessor: 'payPalOrderID' },
 		],
 		[],
 	);
@@ -126,7 +127,7 @@ const TableContainer = styled.div`
 		th,
 		td {
 			margin: 0;
-			padding: 1.5rem;
+			padding: 0.7rem;
 			border-bottom: 1px solid rgba(0, 0, 0, 0.3);
 			border-right: 1px solid rgba(0, 0, 0, 0.3);
 			:last-child {
