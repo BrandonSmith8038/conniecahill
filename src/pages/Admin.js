@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { useTable, useSortBy } from 'react-table';
+import { useTable, useSortBy, usePagination } from 'react-table';
 import axios from 'axios';
 
 const Admin = () => {
@@ -18,7 +18,6 @@ const Admin = () => {
 			.catch((err) => console.error(err));
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
-	console.log('Orders: ', orders);
 	const data = React.useMemo(() => [...orders], [orders]);
 
 	const columns = React.useMemo(
@@ -35,15 +34,28 @@ const Admin = () => {
 		getTableProps,
 		getTableBodyProps,
 		headerGroups,
-		rows,
+		page, // Got Rid Of Rows
 		prepareRow,
+		// May Or May Not Need The Rest Of These
+		canPreviousPage,
+		canNextPage,
+		pageOptions,
+		pageCount,
+		gotoPage,
+		nextPage,
+		previousPage,
+		setPageSize,
+		state: { pageIndex, pageSize },
 	} = useTable(
 		{
 			columns,
 			data,
+			initialSate: { pageIndex: 2 },
 		},
 		useSortBy,
+		usePagination,
 	);
+	console.log('Page: ', page);
 	return (
 		<Container>
 			<Link to='/'>
@@ -69,7 +81,7 @@ const Admin = () => {
 						))}
 					</thead>
 					<tbody {...getTableBodyProps()}>
-						{rows.map((row, i) => {
+						{page.map((row, i) => {
 							prepareRow(row);
 							return (
 								<tr {...row.getRowProps()}>
@@ -84,6 +96,20 @@ const Admin = () => {
 					</tbody>
 				</table>
 			</TableContainer>
+			<Pagination>
+				<button onClick={() => gotoPage(0)} disable={!canPreviousPage}>
+					{'↩↩'}
+				</button>{' '}
+				<button onClick={() => previousPage()} disabled={!canPreviousPage}>
+					{'↩'}
+				</button>{' '}
+				<button onClick={() => nextPage()} disabled={!canNextPage}>
+					{'↪'}
+				</button>{' '}
+				<button onClick={() => gotoPage(pageCount - 1)} disable={!canNextPage}>
+					{'↪↪'}
+				</button>{' '}
+			</Pagination>
 		</Container>
 	);
 };
@@ -97,9 +123,18 @@ const Container = styled.div`
 	width: 100%;
 `;
 
+const Pagination = styled.div`
+	display: flex;
+	justify-content: center;
+	button {
+		cursor: pointer;
+	}
+`;
+
 const TableContainer = styled.div`
 	padding: 1rem;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	text-align: center;
 	width: 80%;
@@ -139,7 +174,7 @@ const TableContainer = styled.div`
 
 const PageTitle = styled.h1`
 	font-size: 3.5rem;
-	font-family: 'Courgette', cursive;
+	font-family: 'Courgette', cursive;nge, a new state.pageIndex is also calculated. It is calculated via Math.floor(currentTopRowIndex / newPageSize)
 	text-transform: uppercase;
 	margin-bottom: 10px;
 	letter-spacing: 5px;
