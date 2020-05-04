@@ -1,45 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { useTable, useSortBy } from 'react-table';
+import axios from 'axios';
 
 const Admin = () => {
-	const data = React.useMemo(
-		() => [
-			{
-				Name: 'Brandon',
-				Song: 'I Believe',
-				Email: 'brandon@gmail.com',
-			},
-			{
-				Name: 'Amber',
-				Song: 'To Be Found Faitful',
-				Email: 'amber@gmail.com',
-			},
-			{
-				Name: 'Mike',
-				Song: 'Both',
-				Email: 'mike@gmail.com',
-			},
-			{
-				Name: 'Connie',
-				Song: 'To Be Found Faithful',
-				Email: 'connie@yahoo.com',
-			},
-			{
-				Name: 'Brad',
-				Song: 'To Be Found Faithful',
-				Email: 'Brad@yahoo.com',
-			},
-		],
-		[],
-	);
+	const [orders, setOrders] = useState([]);
+
+	useEffect(() => {
+		axios
+			.get('/.netlify/functions/FetchOrder')
+			.then((res) => {
+				setOrders(res.data.orders);
+			})
+			.then((orders) => {})
+
+			.catch((err) => console.error(err));
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+	console.log('Orders: ', orders);
+	const data = React.useMemo(() => [...orders], [orders]);
 
 	const columns = React.useMemo(
 		() => [
-			{ Header: 'Name', accessor: 'Name', sortType: 'basic' },
-			{ Header: 'Song', accessor: 'Song', sortType: 'basic' },
-			{ Header: 'Email', accessor: 'Email' },
+			{ Header: 'Name', accessor: 'name', sortType: 'basic' },
+			{ Header: 'Song', accessor: 'song', sortType: 'basic' },
+			{ Header: 'Email', accessor: 'email' },
 		],
 		[],
 	);
@@ -107,7 +93,6 @@ const Container = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	height: 100vh;
 	width: 100%;
 `;
 
