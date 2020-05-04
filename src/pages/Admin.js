@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { useTable, useSortBy, usePagination } from 'react-table';
 import axios from 'axios';
-import { Button } from '../styles';
+import { Button, Container } from '../styles';
 
 const Admin = () => {
 	const [orders, setOrders] = useState([]);
@@ -35,9 +35,8 @@ const Admin = () => {
 		getTableProps,
 		getTableBodyProps,
 		headerGroups,
-		page, // Got Rid Of Rows
+		page,
 		prepareRow,
-		// May Or May Not Need The Rest Of These
 		canPreviousPage,
 		canNextPage,
 		pageOptions,
@@ -57,71 +56,78 @@ const Admin = () => {
 		usePagination,
 	);
 	return (
-		<Container>
+		<>
 			<Link to='/'>
-				<Button style={{ marginTop: '10px' }}>Home</Button>
+				<Button
+					style={{
+						marginTop: '30px',
+						marginLeft: '30px',
+						padding: '.2rem .8rem',
+					}}
+				>
+					Home
+				</Button>
 			</Link>
-			<PageTitle>Sales</PageTitle>
-			<TableContainer>
-				<table {...getTableProps()}>
-					<thead>
-						{headerGroups.map((headerGroup) => (
-							<tr {...headerGroup.getHeaderGroupProps()}>
-								{headerGroup.headers.map((column) => (
-									<th {...column.getHeaderProps(column.getSortByToggleProps())}>
-										{column.render('Header')}
-										{column.isSorted
-											? column.isSortedDesc
-												? ' ⬆'
-												: ' ⬇'
-											: ' '}
-									</th>
-								))}
-							</tr>
-						))}
-					</thead>
-					<tbody {...getTableBodyProps()}>
-						{page.map((row, i) => {
-							prepareRow(row);
-							return (
-								<tr {...row.getRowProps()}>
-									{row.cells.map((cell) => {
-										return (
-											<td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-										);
-									})}
+			<Container>
+				<PageTitle>Sales</PageTitle>
+				<TableContainer>
+					<table {...getTableProps()}>
+						<thead>
+							{headerGroups.map((headerGroup) => (
+								<tr {...headerGroup.getHeaderGroupProps()}>
+									{headerGroup.headers.map((column) => (
+										<th
+											{...column.getHeaderProps(column.getSortByToggleProps())}
+										>
+											{column.render('Header')}
+											{column.isSorted
+												? column.isSortedDesc
+													? ' ⬆'
+													: ' ⬇'
+												: ' '}
+										</th>
+									))}
 								</tr>
-							);
-						})}
-					</tbody>
-				</table>
-			</TableContainer>
-			<Pagination>
-				<Button onClick={() => gotoPage(0)} disable={!canPreviousPage}>
-					{'↩↩'}
-				</Button>{' '}
-				<Button onClick={() => previousPage()} disabled={!canPreviousPage}>
-					{'↩'}
-				</Button>{' '}
-				<Button onClick={() => nextPage()} disabled={!canNextPage}>
-					{'↪'}
-				</Button>{' '}
-				<Button onClick={() => gotoPage(pageCount - 1)} disable={!canNextPage}>
-					{'↪↪'}
-				</Button>{' '}
-			</Pagination>
-		</Container>
+							))}
+						</thead>
+						<tbody {...getTableBodyProps()}>
+							{page.map((row, i) => {
+								prepareRow(row);
+								return (
+									<tr {...row.getRowProps()}>
+										{row.cells.map((cell) => {
+											return (
+												<td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+											);
+										})}
+									</tr>
+								);
+							})}
+						</tbody>
+					</table>
+				</TableContainer>
+				<Pagination>
+					<Button onClick={() => gotoPage(0)} disable={!canPreviousPage}>
+						{'↩↩'}
+					</Button>{' '}
+					<Button onClick={() => previousPage()} disabled={!canPreviousPage}>
+						{'↩'}
+					</Button>{' '}
+					<Button onClick={() => nextPage()} disabled={!canNextPage}>
+						{'↪'}
+					</Button>{' '}
+					<Button
+						onClick={() => gotoPage(pageCount - 1)}
+						disable={!canNextPage}
+					>
+						{'↪↪'}
+					</Button>{' '}
+				</Pagination>
+			</Container>
+		</>
 	);
 };
 export default Admin;
-
-const Container = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-`;
 
 const Pagination = styled.div`
 	display: flex;
@@ -139,15 +145,16 @@ const TableContainer = styled.div`
 	padding: 1rem;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	align-items: center;
 	text-align: center;
 	width: 80%;
 	table {
+		box-shadow: var(--shadow-light);
 		color: #333;
 		font-size: 18px;
 		width: 80%;
 		border-spacing: 0;
-		border: 1px solid rgba(0, 0, 0, 0.3);
+		border: 1px solid var(--primary);
 		tr {
 			:last-child {
 				td {
@@ -162,13 +169,14 @@ const TableContainer = styled.div`
 			font-family: 'Courgette', cursive;
 			font-size: 25px;
 			letter-spacing: 3px;
+			color: var(--primary);
 		}
 		th,
 		td {
 			margin: 0;
 			padding: 0.7rem;
-			border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-			border-right: 1px solid rgba(0, 0, 0, 0.3);
+			border-bottom: 1px solid var(--primary);
+			border-right: 1px solid var(--primary);
 			:last-child {
 				border-right: 0;
 			}
@@ -178,7 +186,8 @@ const TableContainer = styled.div`
 
 const PageTitle = styled.h1`
 	font-size: 3.5rem;
-	font-family: 'Courgette', cursive;nge, a new state.pageIndex is also calculated. It is calculated via Math.floor(currentTopRowIndex / newPageSize)
+	color: var(--primary);
+	font-family: 'Courgette', cursive;
 	text-transform: uppercase;
 	margin-bottom: 10px;
 	letter-spacing: 5px;
