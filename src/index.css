@@ -13,6 +13,7 @@ code {
 }
 :root {
 	--primary: #97622b;
+	--primary-light: #ffdfbe;
 }
 .home-page-container {
 	display: flex;

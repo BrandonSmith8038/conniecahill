@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { useTable, useSortBy, usePagination } from 'react-table';
 import axios from 'axios';
+import { Button } from '../styles';
 
 const Admin = () => {
 	const [orders, setOrders] = useState([]);
@@ -55,11 +56,10 @@ const Admin = () => {
 		useSortBy,
 		usePagination,
 	);
-	console.log('Page: ', page);
 	return (
 		<Container>
 			<Link to='/'>
-				<button>Home</button>
+				<Button style={{ marginTop: '10px' }}>Home</Button>
 			</Link>
 			<PageTitle>Sales</PageTitle>
 			<TableContainer>
@@ -97,18 +97,18 @@ const Admin = () => {
 				</table>
 			</TableContainer>
 			<Pagination>
-				<button onClick={() => gotoPage(0)} disable={!canPreviousPage}>
+				<Button onClick={() => gotoPage(0)} disable={!canPreviousPage}>
 					{'↩↩'}
-				</button>{' '}
-				<button onClick={() => previousPage()} disabled={!canPreviousPage}>
+				</Button>{' '}
+				<Button onClick={() => previousPage()} disabled={!canPreviousPage}>
 					{'↩'}
-				</button>{' '}
-				<button onClick={() => nextPage()} disabled={!canNextPage}>
+				</Button>{' '}
+				<Button onClick={() => nextPage()} disabled={!canNextPage}>
 					{'↪'}
-				</button>{' '}
-				<button onClick={() => gotoPage(pageCount - 1)} disable={!canNextPage}>
+				</Button>{' '}
+				<Button onClick={() => gotoPage(pageCount - 1)} disable={!canNextPage}>
 					{'↪↪'}
-				</button>{' '}
+				</Button>{' '}
 			</Pagination>
 		</Container>
 	);
@@ -127,7 +127,11 @@ const Pagination = styled.div`
 	display: flex;
 	justify-content: center;
 	button {
-		cursor: pointer;
+		margin-right: 10px;
+
+		:last-of-type {
+			margin-right: 0;
+		}
 	}
 `;
 
@@ -151,7 +155,7 @@ const TableContainer = styled.div`
 				}
 			}
 			:nth-child(even) {
-				background-color: #b9fdf8;
+				background-color: var(--primary-light);
 			}
 		}
 		th {
