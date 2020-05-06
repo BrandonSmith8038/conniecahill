@@ -1,2 +1,3 @@
 import Admin from './Admin';
-export { Admin };
+import Login from './Login';
+export { Admin, Login };
