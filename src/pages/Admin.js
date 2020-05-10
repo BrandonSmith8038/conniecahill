@@ -45,13 +45,10 @@ const Admin = (props) => {
 		prepareRow,
 		canPreviousPage,
 		canNextPage,
-		pageOptions,
 		pageCount,
 		gotoPage,
 		nextPage,
 		previousPage,
-		setPageSize,
-		state: { pageIndex, pageSize },
 	} = useTable(
 		{
 			columns,
