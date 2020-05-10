@@ -2,12 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { useTable, useSortBy, usePagination } from 'react-table';
+import { useIdentityContext } from 'react-netlify-identity';
 import axios from 'axios';
 import { Button, Container } from '../styles';
 
-const Admin = () => {
+const Admin = (props) => {
 	const [orders, setOrders] = useState([]);
+	const { logoutUser } = useIdentityContext();
+	const { history } = props;
 
+	const onLogout = () => {
+		logoutUser().then(() => history.push('/'));
+	};
 	useEffect(() => {
 		axios
 			.get('/.netlify/functions/FetchOrder')
@@ -57,17 +63,30 @@ const Admin = () => {
 	);
 	return (
 		<>
-			<Link to='/'>
+			<Nav>
+				<Link to='/'>
+					<Button
+						style={{
+							marginTop: '30px',
+							marginLeft: '30px',
+							padding: '.2rem .8rem',
+						}}
+					>
+						Home
+					</Button>
+				</Link>
 				<Button
+					onClick={() => onLogout()}
 					style={{
 						marginTop: '30px',
 						marginLeft: '30px',
 						padding: '.2rem .8rem',
+						border: 'none',
 					}}
 				>
-					Home
+					Logout
 				</Button>
-			</Link>
+			</Nav>
 			<Container>
 				<PageTitle>Sales</PageTitle>
 				<TableContainer>
@@ -139,6 +158,11 @@ const Pagination = styled.div`
 			margin-right: 0;
 		}
 	}
+`;
+
+const Nav = styled.div`
+	display: flex;
+	justify-content: space-between;
 `;
 
 const TableContainer = styled.div`
