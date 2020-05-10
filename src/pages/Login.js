@@ -8,10 +8,11 @@ import { Container, Card, Button, CustomInput } from '../styles';
 import { useFormik } from 'formik';
 // import 'react-netlify-identity-widget/styles.css'; Will Need To Turn On To Register User
 
-const Login = () => {
+const Login = (props) => {
 	const { loginUser, logoutUser } = useIdentityContext();
 	// const [dialog, setDialog] = useState(false); Turn Back On To Register User
 	const [msg, setMsg] = useState('');
+	const { history } = props;
 	const formik = useFormik({
 		initialValues: {
 			user: '',
@@ -24,10 +25,10 @@ const Login = () => {
 		console.log(e);
 		const user = formik.values.user;
 		const password = formik.values.password;
-
 		loginUser(user, password, true)
 			.then((user) => {
 				console.log('Success! Logged In', user);
+				history.push('/admin');
 				setMsg(`Welcome ${user.user_metadata.full_name}`);
 			})
 			.catch((e) => console.log(e) || setMsg('Error: ' + e.message));
@@ -35,7 +36,7 @@ const Login = () => {
 
 	const onLogOut = (e) => {
 		e.preventDefault();
-		logoutUser().then((user) => console.log(user));
+		logoutUser().then((user) => history.push('/'));
 	};
 
 	return (
