@@ -18,7 +18,7 @@ const Login = (props) => {
 		e.preventDefault();
 		const user = formik.values.user;
 		const password = formik.values.password;
-		loginUser(user, password, true)
+		loginUser(user, password, false)
 			.then((user) => {
 				history.push('/admin');
 				// setMsg(`Welcome ${user.user_metadata.full_name}`);
