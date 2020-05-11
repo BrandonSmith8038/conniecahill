@@ -94,18 +94,6 @@ h2.subtitle {
 	text-align: center;
 	background: none;
 }
-.contact {
-	margin-top: auto;
-	margin-bottom: 20px;
-	color: var(--primary);
-	justify-self: flex-end;
-	text-align: center;
-	font-family: 'Courgette', cursive;
-}
-.contact p {
-	font-size: 30px;
-	margin: 0;
-}
 .fresh-submit {
 	background: #ffcc00;
 	padding: 10px;
