@@ -6,6 +6,7 @@ import {
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { Admin, Login } from './pages';
 import { LeftSide, RightSide } from './components';
+import 'normalize.css';
 import './index.css';
 
 function App() {
