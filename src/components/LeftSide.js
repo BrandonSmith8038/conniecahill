@@ -1,22 +1,26 @@
-import PropTypes from 'prop-types';
 import React from 'react';
-import { Contact, PurchaseForm } from './';
+import { YouTubePlayer } from '.';
 
-const LeftSide = (props) => {
-	const { mainTitle, subTitle } = props;
+const LeftSide = () => {
 	return (
 		<div className='left-side'>
-			<h1 className='title'>{mainTitle}</h1>
-			<h2 className='subtitle'>{subTitle}</h2>
-			<PurchaseForm />
-			<Contact email='Connie@conniecahill.com' />
+			<div className='overlay'></div>
+			<div className='video-thumbs'>
+				<YouTubePlayer
+					title='I Believe In Miracles'
+					id='o2UGvAT5Vrw'
+					height='315'
+					width='100%'
+				/>
+				<YouTubePlayer
+					title='To Be Found Faithful'
+					id='o2UGvAT5Vrw'
+					height='315'
+					width='100%'
+				/>
+			</div>
 		</div>
 	);
-};
-
-LeftSide.propTypes = {
-	mainTitle: PropTypes.string.isRequired,
-	subTitle: PropTypes.string.isRequired,
 };
 
 export default LeftSide;

@@ -1,26 +1,22 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-import { YouTubePlayer } from './';
+import { Contact, PurchaseForm } from '.';
 
-const RightSide = () => {
+const RightSide = (props) => {
+	const { mainTitle, subTitle } = props;
 	return (
 		<div className='right-side'>
-			<div className='overlay'></div>
-			<div className='video-thumbs'>
-				<YouTubePlayer
-					title='I Believe In Miracles'
-					id='o2UGvAT5Vrw'
-					height='315'
-					width='100%'
-				/>
-				<YouTubePlayer
-					title='To Be Found Faithful'
-					id='o2UGvAT5Vrw'
-					height='315'
-					width='100%'
-				/>
-			</div>
+			<h1 className='title'>{mainTitle}</h1>
+			<h2 className='subtitle'>{subTitle}</h2>
+			<PurchaseForm />
+			<Contact email='Connie@conniecahill.com' />
 		</div>
 	);
+};
+
+RightSide.propTypes = {
+	mainTitle: PropTypes.string.isRequired,
+	subTitle: PropTypes.string.isRequired,
 };
 
 export default RightSide;
