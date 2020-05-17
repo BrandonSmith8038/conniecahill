@@ -18,13 +18,3 @@ code {
 	--primary-light: #ffdfbe;
 	--shadow-light: 3px 6px 13px 2px rgba(0, 0, 0, 0.48);
 }
-.home-page-container {
-	display: flex;
-}
-
-.fresh-submit {
-	background: #ffcc00;
-	padding: 10px;
-	text-align: center;
-	border-radius: 10px;
-}

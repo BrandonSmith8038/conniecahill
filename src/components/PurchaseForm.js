@@ -13,6 +13,17 @@ const PurchaseForm = () => {
 		},
 	});
 
+	const songs = [
+		{ name: 'Select', value: 'null' },
+		{ name: 'I Believe In Miracles - $1.49', value: 'I Believe In Miracles' },
+		{ name: 'To Be Found Faithful - $1.49', value: 'To Be Found Faithful' },
+		{ name: 'Both Songs - $2.99', value: 'Both' },
+	];
+
+	const options = songs.map((song) => (
+		<option value={song.value}>{song.name}</option>
+	));
+
 	return (
 		<>
 			<Form onSubmit={formik.handleSubmit}>
@@ -23,14 +34,7 @@ const PurchaseForm = () => {
 					onChange={formik.handleChange}
 					value={formik.values.song}
 				>
-					<option value='null'>Select</option>
-					<option value='I Believe In Miracles'>
-						I Believe In Miracles - $1.49
-					</option>
-					<option value='To Be Found Faithful'>
-						To Be Found Faithful - $1.49
-					</option>
-					<option value='Both'>Both Songs - $2.99</option>
+					{options}
 				</select>
 				<CustomPayPalButton
 					formSong={formik.values.song}
