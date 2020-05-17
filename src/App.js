@@ -44,4 +44,8 @@ export default App;
 
 const HomePageContainer = styled.div`
 	display: flex;
+
+	@media (max-width: 890px) {
+		flex-direction: column-reverse;
+	}
 `;

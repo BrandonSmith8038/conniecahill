@@ -32,4 +32,10 @@ const VideoTitle = styled.p`
 	margin-top: 0;
 	margin-bottom: 5px;
 	text-align: center;
+
+	&:first-of-type {
+		@media (max-width: 890px) {
+			margin-top: 30px;
+		}
+	}
 `;

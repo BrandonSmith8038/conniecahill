@@ -56,6 +56,10 @@ const Form = styled.form`
 	align-items: center;
 	width: 65%;
 
+	@media (max-width: 1100px) {
+		width: 95%;
+	}
+
 	select {
 		padding: 10px;
 		width: 100%;

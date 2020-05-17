@@ -30,4 +30,7 @@ const ContactContainer = styled.div`
 		font-size: 30px;
 		margin: 0;
 	}
+	@media (max-width: 890px) {
+		margin-top: 20px;
+	}
 `;

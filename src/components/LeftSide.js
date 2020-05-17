@@ -36,9 +36,18 @@ const LeftSideContainer = styled.div`
 	background-size: cover;
 	color: white;
 	width: 60%;
+
+	@media (max-width: 890px) {
+		width: 100%;
+		height: 100%;
+		padding-bottom: 20px;
+	}
 `;
 
 const VideoThumbs = styled.div`
 	color: white;
 	width: 50%;
+	@media (max-width: 890px) {
+		width: 80%;
+	}
 `;

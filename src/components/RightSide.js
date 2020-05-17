@@ -27,9 +27,23 @@ const Title = styled.h1`
 	font-size: 75px;
 	color: var(--primary);
 	font-family: 'Courgette', cursive;
+
+	@media (max-width: 1100px) {
+		font-size: 60px;
+	}
+	@media (max-width: 930px) {
+		font-size: 45px;
+	}
 `;
 
 const Subtitle = styled.h2`
 	font-size: 50px;
 	font-family: 'Courgette', cursive;
+
+	@media (max-width: 1100px) {
+		font-size: 50px;
+	}
+	@media (max-width: 930px) {
+		font-size: 35px;
+	}
 `;
