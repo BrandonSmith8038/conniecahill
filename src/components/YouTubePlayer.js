@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import YouTube from 'react-youtube';
+import styled from 'styled-components/macro';
 
 const YouTubePlayer = (props) => {
 	const { title, id, width, height } = props;
@@ -11,10 +12,8 @@ const YouTubePlayer = (props) => {
 	};
 	return (
 		<>
-			<p className='video-title'>{title}</p>
-			<div className='video-thumb'>
-				<YouTube videoId={id} opts={opts} />
-			</div>
+			<VideoTitle>{title}</VideoTitle>
+			<YouTube videoId={id} opts={opts} />
 		</>
 	);
 };
@@ -27,3 +26,10 @@ YouTubePlayer.propTypes = {
 };
 
 export default YouTubePlayer;
+
+const VideoTitle = styled.p`
+	font-size: 39px;
+	margin-top: 0;
+	margin-bottom: 5px;
+	text-align: center;
+`;

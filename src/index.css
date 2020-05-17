@@ -22,18 +22,6 @@ code {
 	display: flex;
 }
 
-h1.title {
-	font-size: 75px;
-	color: var(--primary);
-	font-family: 'Courgette', cursive;
-}
-p.video-title {
-	text-align: center;
-	margin-top: 0;
-	margin-bottom: 5px;
-	font-size: 39px;
-}
-
 .form {
 	display: flex;
 	flex-direction: column;
