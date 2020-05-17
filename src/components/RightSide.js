@@ -1,16 +1,18 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Contact, PurchaseForm } from '.';
+import styled from 'styled-components/macro';
+import { Container } from '../styles';
 
 const RightSide = (props) => {
 	const { mainTitle, subTitle } = props;
 	return (
-		<div className='right-side'>
-			<h1 className='title'>{mainTitle}</h1>
-			<h2 className='subtitle'>{subTitle}</h2>
+		<Container width='40%' height='100vh'>
+			<Title>{mainTitle}</Title>
+			<Subtitle>{subTitle}</Subtitle>
 			<PurchaseForm />
 			<Contact email='Connie@conniecahill.com' />
-		</div>
+		</Container>
 	);
 };
 
@@ -20,3 +22,14 @@ RightSide.propTypes = {
 };
 
 export default RightSide;
+
+const Title = styled.h1`
+	font-size: 75px;
+	color: var(--primary);
+	font-family: 'Courgette', cursive;
+`;
+
+const Subtitle = styled.h2`
+	font-size: 50px;
+	font-family: 'Courgette', cursive;
+`;
