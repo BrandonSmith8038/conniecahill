@@ -6,6 +6,8 @@ import {
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { Admin, Login } from './pages';
 import { LeftSide, RightSide } from './components';
+import 'normalize.css';
+import styled from 'styled-components/macro';
 import './index.css';
 
 function App() {
@@ -25,10 +27,10 @@ function App() {
 			<div className='App'>
 				<Switch>
 					<PublicRoute path='/' exact>
-						<div className='home-page-container'>
+						<HomePageContainer>
 							<RightSide />
 							<LeftSide mainTitle='Connie Cahill' subTitle='Purchase Mp3' />
-						</div>
+						</HomePageContainer>
 					</PublicRoute>
 					<PrivateRoute path='/admin' component={Admin} />
 					<PublicRoute path='/login' component={Login} />
@@ -39,3 +41,11 @@ function App() {
 }
 
 export default App;
+
+const HomePageContainer = styled.div`
+	display: flex;
+
+	@media (max-width: 890px) {
+		flex-direction: column-reverse;
+	}
+`;

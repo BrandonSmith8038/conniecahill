@@ -1,26 +1,49 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-import { YouTubePlayer } from './';
+import { Contact, PurchaseForm } from '.';
+import styled from 'styled-components/macro';
+import { Container } from '../styles';
 
-const RightSide = () => {
+const RightSide = (props) => {
+	const { mainTitle, subTitle } = props;
 	return (
-		<div className='right-side'>
-			<div className='overlay'></div>
-			<div className='video-thumbs'>
-				<YouTubePlayer
-					title='I Believe In Miracles'
-					id='o2UGvAT5Vrw'
-					height='315'
-					width='100%'
-				/>
-				<YouTubePlayer
-					title='To Be Found Faithful'
-					id='o2UGvAT5Vrw'
-					height='315'
-					width='100%'
-				/>
-			</div>
-		</div>
+		<Container width='40%' height='100vh'>
+			<Title>{mainTitle}</Title>
+			<Subtitle>{subTitle}</Subtitle>
+			<PurchaseForm />
+			<Contact email='Connie@conniecahill.com' />
+		</Container>
 	);
 };
 
+RightSide.propTypes = {
+	mainTitle: PropTypes.string.isRequired,
+	subTitle: PropTypes.string.isRequired,
+};
+
 export default RightSide;
+
+const Title = styled.h1`
+	font-size: 75px;
+	color: var(--primary);
+	font-family: 'Courgette', cursive;
+
+	@media (max-width: 1100px) {
+		font-size: 60px;
+	}
+	@media (max-width: 930px) {
+		font-size: 45px;
+	}
+`;
+
+const Subtitle = styled.h2`
+	font-size: 50px;
+	font-family: 'Courgette', cursive;
+
+	@media (max-width: 1100px) {
+		font-size: 50px;
+	}
+	@media (max-width: 930px) {
+		font-size: 35px;
+	}
+`;
