@@ -22,44 +22,9 @@ code {
 	display: flex;
 }
 
-.form {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	width: 65%;
-}
-.form::placeholder {
-	font-family: 'Courgette', cursive;
-}
-.form input,
-.form select {
-	padding: 10px;
-	width: 100%;
-	outline: none;
-	margin: 7px 0;
-	border-radius: 9px;
-	border: 1px solid var(--primary);
-	font-size: 30px;
-	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-	-moz-box-sizing: border-box; /* Firefox, other Gecko */
-	box-sizing: border-box; /* Opera/IE 8+ */
-}
-.form select {
-	text-align: center;
-	background: none;
-}
 .fresh-submit {
 	background: #ffcc00;
 	padding: 10px;
 	text-align: center;
 	border-radius: 10px;
-}
-.payment-methods {
-	margin: 0 auto;
-	max-width: 70%;
-}
-.payment-methods img {
-	margin-top: 10px;
-	width: 100%;
 }

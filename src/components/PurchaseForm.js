@@ -1,6 +1,7 @@
 import React from 'react';
 import paymentMethods from '../img/payment-methods.png';
 import { useFormik } from 'formik';
+import styled from 'styled-components/macro';
 import { CustomPayPalButton } from './';
 
 const PurchaseForm = () => {
@@ -13,8 +14,8 @@ const PurchaseForm = () => {
 	});
 
 	return (
-		<div className='form'>
-			<form onSubmit={formik.handleSubmit}>
+		<>
+			<Form onSubmit={formik.handleSubmit}>
 				<select
 					required
 					id='song'
@@ -35,11 +36,45 @@ const PurchaseForm = () => {
 					formSong={formik.values.song}
 					resetForm={formik.resetForm}
 				/>
-				<div className='payment-methods'>
-					<img src={paymentMethods} alt='Payment Methods' />
-				</div>
-			</form>
-		</div>
+			</Form>
+			<PaymentMethods>
+				<img src={paymentMethods} alt='Payment Methods' />
+			</PaymentMethods>
+		</>
 	);
 };
 export default PurchaseForm;
+
+const Form = styled.form`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 65%;
+
+	select {
+		padding: 10px;
+		width: 100%;
+		outline: none;
+		margin: 7px 0;
+		border-radius: 9px;
+		border: 1px solid var(--primary);
+		text-align: center;
+		background: none;
+		font-size: 25px;
+	}
+	div {
+		width: 100%;
+	}
+`;
+const PaymentMethods = styled.div`
+	display: flex;
+	justify-content: center;
+	margin: 0 auto;
+	max-width: 70%;
+
+	img {
+		margin-top: 10px;
+		width: 60%;
+	}
+`;
