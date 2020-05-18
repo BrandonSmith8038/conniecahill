@@ -5,12 +5,12 @@ import styled from 'styled-components/macro';
 import { Container } from '../styles';
 
 const RightSide = (props) => {
-	const { mainTitle, subTitle } = props;
+	const { mainTitle, subTitle, openModal, setMessage } = props;
 	return (
 		<Container width='40%' height='100vh'>
 			<Title>{mainTitle}</Title>
 			<Subtitle>{subTitle}</Subtitle>
-			<PurchaseForm />
+			<PurchaseForm openModal={openModal} setMessage={setMessage} />
 			<Contact email='Connie@conniecahill.com' />
 		</Container>
 	);

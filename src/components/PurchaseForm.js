@@ -4,7 +4,9 @@ import { useFormik } from 'formik';
 import styled from 'styled-components/macro';
 import { CustomPayPalButton } from './';
 
-const PurchaseForm = () => {
+const PurchaseForm = (props) => {
+	const { openModal, setMessage } = props;
+
 	const formik = useFormik({
 		initialValues: {
 			song: 'null',
@@ -37,6 +39,8 @@ const PurchaseForm = () => {
 					{options}
 				</select>
 				<CustomPayPalButton
+					setMessage={setMessage}
+					openModal={openModal}
 					formSong={formik.values.song}
 					resetForm={formik.resetForm}
 				/>
