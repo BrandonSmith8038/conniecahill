@@ -25,6 +25,7 @@
 		"react-alert": "^7.0.0",
 		"react-alert-template-basic": "^1.0.0",
 		"react-dom": "^16.13.1",
+		"react-modal": "^3.11.2",
 		"react-netlify-identity": "^0.2.5",
 		"react-netlify-identity-widget": "^0.2.7",
 		"react-paypal-button-v2": "^2.6.2",

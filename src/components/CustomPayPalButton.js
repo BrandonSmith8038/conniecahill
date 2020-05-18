@@ -1,13 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { PayPalButton } from 'react-paypal-button-v2';
-import { useAlert } from 'react-alert';
 import { saveToDB, sendEmail } from '../utils';
 require('dotenv').config();
 
 const CustomPayPalButton = (props) => {
-	const { formSong, resetForm } = props;
-	const alert = useAlert();
+	const { formSong, resetForm, openModal, setMessage } = props;
 
 	return (
 		<div>
@@ -45,14 +43,10 @@ const CustomPayPalButton = (props) => {
 				}}
 				// On Order Success
 				onSuccess={(details, data) => {
-					console.log({ details, data });
-					// Show The Aler
-					alert.show(
-						<div style={{ color: '#07df1c' }}>
-							{' '}
-							Thank You! We have recieved your order, please check your email
-						</div>,
+					setMessage(
+						'Thank You! We have recieved your order, please check your email',
 					);
+					openModal();
 					// Create order to Send To Database
 					const { orderID } = data;
 					const { email_address: email } = details.payer;
