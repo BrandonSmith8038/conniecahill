@@ -2,6 +2,7 @@ import React from 'react';
 import { useIdentityContext } from 'react-netlify-identity-widget';
 import { Container, Card, Button, CustomInput } from '../styles';
 import { useFormik } from 'formik';
+import styled from 'styled-components/macro';
 
 const Login = (props) => {
 	const { loginUser } = useIdentityContext();
@@ -31,7 +32,7 @@ const Login = (props) => {
 			<Container style={{ height: '100vh' }}>
 				<Card>
 					<h2 style={{ fontSize: '3.6rem' }}>Login</h2>
-					<form onSubmit={formik.handleSubmit}>
+					<Form onSubmit={formik.handleSubmit}>
 						<CustomInput
 							type='text'
 							placeholder='User Name'
@@ -46,7 +47,7 @@ const Login = (props) => {
 							value={formik.values.password}
 							name='password'
 						/>
-					</form>
+					</Form>
 					<Button onClick={(e) => onSubmit(e)}>Login</Button>
 				</Card>
 			</Container>
@@ -67,3 +68,8 @@ Stick At The Top Of Card Component
 	{msg && <pre>{msg}</pre>}
 	<pre>{`Is Logged In ${isLoggedIn}`}</pre>
 	<Button onClick={() => setDialog(true)}>Login</Button> */
+const Form = styled.form`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+`;
