@@ -11,7 +11,6 @@ const Card = styled.div`
 	align-items: center;
 	/* padding: 1rem; */
 	box-shadow: var(--shadow-light);
-	height: 50%;
 	width: 24%;
 
 	h2 {
@@ -20,7 +19,8 @@ const Card = styled.div`
 
 	button {
 		color: white;
-		margin-top: 47px;
+		margin-top: 30px;
+		margin-bottom: 30px;
 		:hover {
 			color: white;
 			border-color: white;
