@@ -30,7 +30,7 @@
 		"react-netlify-identity-widget": "^0.2.7",
 		"react-paypal-button-v2": "^2.6.2",
 		"react-router-dom": "^5.0.0",
-		"react-scripts": "3.4.1",
+		"react-scripts": "5.0.1",
 		"react-table": "^7.0.4",
 		"react-youtube": "^7.11.2",
 		"styled-components": "^5.1.0",
